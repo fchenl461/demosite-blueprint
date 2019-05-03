@@ -1,0 +1,580 @@
+{
+    "extractors": [
+        {
+            "name": "textPreExtractor",
+            "variable": "preText",
+            "disabled": false,
+            "type": "text",
+            "when": "preAction",
+            "value": ""
+        },
+        {
+            "name": "textPostExtractor",
+            "variable": "postText",
+            "disabled": false,
+            "type": "text",
+            "when": "postAction",
+            "value": ""
+        }
+    ],
+    "validators": [
+        {
+            "name": "greaterOrEqualThanOneValidator",
+            "disabled": false,
+            "type": "text",
+            "value": "",
+            "when": "postAction",
+            "operator": "greaterOrEqual",
+            "target": "1"
+        },
+        {
+            "name": "containsAtSignValidator",
+            "disabled": false,
+            "type": "text",
+            "value": "",
+            "when": "postAction",
+            "operator": "contains",
+            "target": "\"@\""
+        }
+    ],
+    "threshold": 0.75,
+    "autoValidations": [
+        {
+            "name": "itemsShoppingCartAutoValidation",
+            "disabled": false,
+            "type": "elementExists",
+            "value": "form(\"update-cart\")",
+            "target": "locator"
+        },
+        {
+            "name": "productAddToCartAutoValidation",
+            "disabled": false,
+            "type": "staticText",
+            "value": "$preText",
+            "target": "wholePage"
+        },
+        {
+            "name": "searchAutoValidation",
+            "disabled": false,
+            "type": "elementExists",
+            "value": "",
+            "locator": "heading6(\"search-results-title\")",
+            "target": "locator"
+        },
+        {
+            "name": "goToShoppingCartAutoValidation",
+            "disabled": false,
+            "type": "staticText",
+            "value": "\"Shopping Cart\"",
+            "locator": "heading1(\"Shopping Cart\")",
+            "target": "locator"
+        },
+        {
+            "name": "textAutoValidation",
+            "disabled": false,
+            "type": "text",
+            "value": "",
+            "target": "wholePage"
+        },
+        {
+            "name": "checkoutAutoValidation",
+            "disabled": false,
+            "type": "elementExists",
+            "value": "",
+            "locator": "heading1(\"Checkout\")",
+            "target": "locator"
+        },
+        {
+            "name": "orderEmailAutoValidation",
+            "disabled": false,
+            "type": "staticText",
+            "value": "$postText",
+            "locator": "email(\"order_email\")",
+            "target": "locator"
+        }
+    ],
+    "actions": [],
+    "smartTags": [
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:add-to-cart-button"
+            }],
+            "type": "Action",
+            "tags": ["button"],
+            "name": "addToCartButton",
+            "disabled": false,
+            "autoValidations": [
+                "goToShoppingCartAutoValidation",
+                "productAddToCartAutoValidation"
+            ],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 33.333333333333336,
+                    "type": "attrContainsValue",
+                    "value": "type:submit"
+                },
+                {
+                    "weight": 33.333333333333336,
+                    "type": "attrContainsValue",
+                    "value": "value:Search"
+                },
+                {
+                    "weight": 33.333333333333336,
+                    "type": "attrContainsValue",
+                    "value": "class:btn-success"
+                }
+            ],
+            "type": "Action",
+            "tags": ["input"],
+            "name": "searchButton",
+            "disabled": false,
+            "autoValidations": ["searchAutoValidation"],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:checkout-link"
+            }],
+            "type": "Action",
+            "tags": ["button"],
+            "name": "checkOutButton",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:card_code"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "cardCodeText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:spree_user_password"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "passwordText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "class:cart-info"
+            }],
+            "type": "Action",
+            "tags": ["a"],
+            "name": "cartButton",
+            "disabled": false,
+            "autoValidations": [
+                "goToShoppingCartAutoValidation",
+                "itemsShoppingCartAutoValidation"
+            ],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "class:form-control"
+                },
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "id:order_bill_address_attributes"
+                }
+            ],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "billingAddressText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:card_number"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "cardNumberText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": ["containsAtSignValidator"],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:spree_user_email"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "emailText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "type:submit"
+                },
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "value:Place Order"
+                }
+            ],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "placeOrderButton",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "type:submit"
+                },
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "value:Continue"
+                }
+            ],
+            "type": "Action",
+            "tags": ["input"],
+            "name": "continueButton",
+            "disabled": false,
+            "autoValidations": [
+                "checkoutAutoValidation",
+                "orderEmailAutoValidation"
+            ],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:card_expiry"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "cardExpirationText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": true,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:home-link"
+            }],
+            "type": "Navigation",
+            "tags": ["li"],
+            "name": "homeButton",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:taxon"
+            }],
+            "type": "Select",
+            "tags": ["select"],
+            "name": "dropDownSelect",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": true,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "class:list-group-item"
+            }],
+            "type": "Navigation",
+            "tags": ["a"],
+            "name": "sideMenuLink",
+            "disabled": false,
+            "autoValidations": ["textAutoValidation"],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:keywords"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "searchBoxText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "value:Login"
+                },
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "class:btn btn-lg btn-success btn-block"
+                }
+            ],
+            "type": "Action",
+            "tags": ["input"],
+            "name": "loginButton",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:name_on_card_2"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "nameOnCardText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": true,
+            "extractors": ["textPreExtractor"],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 50,
+                    "type": "attrContainsValue",
+                    "value": "class:info"
+                },
+                {
+                    "weight": 50,
+                    "type": "attrContainsValue",
+                    "value": "itemprop:name"
+                }
+            ],
+            "type": "Navigation",
+            "tags": ["span"],
+            "name": "productLink",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": [],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "class:form-control"
+                },
+                {
+                    "weight": 100,
+                    "type": "attrContainsValue",
+                    "value": "id:order_bill_address_attributes"
+                }
+            ],
+            "type": "Select",
+            "tags": ["select"],
+            "name": "billingAddressSelect",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": [],
+            "validators": ["greaterOrEqualThanOneValidator"],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:quantity"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "quantityText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        },
+        {
+            "singleton": false,
+            "scanOnePerPage": false,
+            "extractors": ["textPostExtractor"],
+            "validators": ["containsAtSignValidator"],
+            "methods": {},
+            "scanOncePerApp": false,
+            "rules": [{
+                "weight": 100,
+                "type": "attrContainsValue",
+                "value": "id:order_email"
+            }],
+            "type": "Text",
+            "tags": ["input"],
+            "name": "guestEmailText",
+            "disabled": false,
+            "autoValidations": [],
+            "info": {}
+        }
+    ]
+}
